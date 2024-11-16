@@ -6,7 +6,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from sqlalchemy import create_engine
 from scipy.signal import find_peaks
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, LEGEND_FONT_SIZE, \
-    INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE  # Assuming config file for shared settings
+    INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE, set_y_ticks  # Assuming config file for shared settings
 import matplotlib.ticker as mticker
 from matplotlib.colors import ListedColormap
 
@@ -110,7 +110,6 @@ def generate(ax):
     # ax.axvline(x=16.0, color='black', linestyle='--', lw=3.0, alpha=0.5)
     # ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: r'$%.3f$' % x))
 
-
     # Inset Plot (Frequency Differences)
     inset_ax = inset_axes(ax, width="35%", height="35%", loc="upper left", bbox_to_anchor=(.01, 0, 1, 1),
                           bbox_transform=ax.transAxes)
@@ -139,16 +138,15 @@ def generate(ax):
     inset_ax.yaxis.tick_right()
     inset_ax.set_ylabel('Splitting (MHz)', fontsize=INSET_LABEL_FONT_SIZE)
 
-
     inset_ax.tick_params(axis='both', labelsize=INSET_TICK_FONT_SIZE)
-
-
 
     ax.set_ylim([5.994, 6.009])
     ax.set_xlabel('Attenuation (dB)', fontsize=LABEL_FONT_SIZE)
 
+    set_y_ticks(ax)
 
     return ax
+
 
 if __name__ == "__main__":
     fig, ax = plt.subplots(figsize=(10, 6))

@@ -5,7 +5,7 @@ from scipy.signal import find_peaks
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from theory import dimer_model_symbolics as sm  # Adjust this based on your project structure
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, INSET_TICK_FONT_SIZE, LEGEND_FONT_SIZE, \
-    INSET_LABEL_FONT_SIZE  # Assuming a config file for shared settings
+    INSET_LABEL_FONT_SIZE, set_y_ticks  # Assuming a config file for shared settings
 
 
 def generate(ax_main):
@@ -108,9 +108,7 @@ def generate(ax_main):
     ax_main.yaxis.set_major_locator(plt.MaxNLocator(7))
 
     # Get the current y-tick positions
-    y_ticks = ax_main.get_yticks()
-    ax_main.set_yticks(y_ticks)
-    ax_main.set_yticklabels([f"{tick:.3f}" for tick in y_ticks[::-1]])
+    set_y_ticks(ax_main, reverse=True)
 
 
     # Configure inset labels and legend

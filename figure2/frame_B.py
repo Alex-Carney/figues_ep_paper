@@ -5,7 +5,8 @@ from scipy.signal import find_peaks
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from theory import dimer_model_symbolics as sm  # Adjust this based on your project structure
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, \
-    LEGEND_FONT_SIZE, INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE  # Assuming you have a config file for shared settings
+    LEGEND_FONT_SIZE, INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE, \
+    NUM_Y_TICKS, set_y_ticks  # Assuming you have a config file for shared settings
 
 
 def generate(ax_main):
@@ -159,11 +160,11 @@ def generate(ax_main):
 
     # Set y-axis limits for the main plot
     ax_main.set_ylim([5.9, 6.19])
-    ax_main.set_xlim(.295, .15)
-    y_ticks = ax_main.get_yticks()
-    ax_main.set_yticks(y_ticks)
-    ax_main.set_yticklabels([f"{tick:.3f}" for tick in y_ticks])
 
+    # ax_main.set_ylim([5.994, 6.009])
+    ax_main.set_xlim(.295, .15)
+
+    set_y_ticks(ax_main)
 
     return ax_main
 
