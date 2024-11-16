@@ -5,7 +5,7 @@ import numpy as np
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from matplotlib.colors import Normalize
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, INSET_TICK_FONT_SIZE, \
-    INSET_LABEL_FONT_SIZE, LEGEND_FONT_SIZE, set_y_ticks  # Assuming these are shared settings
+    INSET_LABEL_FONT_SIZE, LEGEND_FONT_SIZE, set_y_ticks, VOLTS_TO_MUT, VEC_B  # Assuming these are shared settings
 
 # Load data
 ced = pd.read_csv('../data/combined_freq_splitting.csv')
@@ -42,7 +42,7 @@ def generate(ax_main):
         if cutoff_voltage:
             filtered_group = group[group['voltage'] <= cutoff_voltage]  # Filter data below cutoff
             ax_main.scatter(
-                filtered_group['voltage'],
+                filtered_group['voltage'] * VOLTS_TO_MUT,
                 filtered_group['peak_freq'] / 1e9,
                 label=f'Γ = {normalized_label}',
                 color=colors[normalized_label + ' dB']
@@ -60,17 +60,17 @@ def generate(ax_main):
         if cutoff_voltage:
             filtered_subset = subset[subset['voltage'] <= cutoff_voltage]  # Filter data below cutoff
             ax_inset.scatter(
-                filtered_subset['voltage'],
+                filtered_subset['voltage'] * VOLTS_TO_MUT,
                 filtered_subset['freq_diff'] / 1e6,
                 label=f'Γ = {label}',
                 color=colors[label]
             )
 
-    ax_inset.set_ylabel('Splitting (MHz.)', fontsize=INSET_LABEL_FONT_SIZE)
+    ax_inset.set_ylabel('Splitting [MHz]', fontsize=INSET_LABEL_FONT_SIZE)
     ax_inset.tick_params(axis='both', labelsize=INSET_TICK_FONT_SIZE)
 
     ax_main.set_ylim([5.997, 6.036])
-    ax_main.set_xlabel('Voltage (V)', fontsize=LABEL_FONT_SIZE)
+    ax_main.set_xlabel('$\Delta$' + VEC_B + '[$\mu$T]', fontsize=LABEL_FONT_SIZE)
 
     set_y_ticks(ax_main)
 
