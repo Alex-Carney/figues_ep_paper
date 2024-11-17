@@ -6,10 +6,10 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from theory import dimer_model_symbolics as sm  # Adjust this based on your project structure
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, \
     LEGEND_FONT_SIZE, INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE, \
-    NUM_Y_TICKS, set_y_ticks  # Assuming you have a config file for shared settings
+    NUM_Y_TICKS, set_y_ticks, set_x_ticks  # Assuming you have a config file for shared settings
 
 
-def generate(ax_main):
+def generate(ax_main, ax_theory=None, ax_theory_inset=None):
     # Define constants
     J_vals = [0.075, 0.08, 0.085, 0.09]
     lo_freqs = np.linspace(5.6, 6.4, 1000)
@@ -165,6 +165,23 @@ def generate(ax_main):
     ax_main.set_xlim(.295, .15)
 
     set_y_ticks(ax_main)
+
+    ax_main.set_xticks([])
+    ax_main.set_xlabel('')
+
+    if ax_theory:
+        # ax_main.set_xticks(ax_main.get_xticks())  # Keep the positions
+        # ax_main.set_xticklabels(ax_theory.get_xticks())  # Use the source's tick labels
+
+        ax_main.set_yticks(ax_main.get_yticks())  # Keep the positions
+        ax_main.set_yticklabels([f"{tick:.3f}" for tick in ax_theory.get_yticks()])
+
+    if ax_theory_inset:
+        ax_inset.set_xticks(ax_inset.get_xticks())
+        ax_inset.set_xticklabels(ax_theory_inset.get_xticks())
+
+        ax_inset.set_yticks(ax_inset.get_yticks())
+        ax_inset.set_yticklabels(ax_theory_inset.get_yticks())
 
     return ax_main
 

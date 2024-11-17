@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
-import generate_transmission_plots as gte
 from figure3.config import LABEL_FONT_SIZE, TICK_FONT_SIZE, LEGEND_FONT_SIZE
 
 # Define parameters
@@ -54,7 +53,7 @@ def generate(ax_main, power_grid, voltages, frequencies):
 # Driver code for standalone testing
 if __name__ == "__main__":
     # Third plot (Transmission Plot) - Top Right with Inset
-    import generate_transmission_plots as gte
+    import shared.generate_transmission_plots as gte
     experiment_id = '413b3b49-c536-427f-a0fd-f0859052f0bd'  # Set the experiment ID
     engine = gte.__get_engine('../data/overweekend_loop_phase_search')  # Ensure correct database name and engine creation
     power_grid, voltages, frequencies, settings = gte.__get_data_from_db(engine, experiment_id)

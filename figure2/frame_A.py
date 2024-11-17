@@ -5,10 +5,10 @@ from scipy.signal import find_peaks
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from theory import dimer_model_symbolics as sm  # Adjust this based on your project structure
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, INSET_TICK_FONT_SIZE, LEGEND_FONT_SIZE, \
-    INSET_LABEL_FONT_SIZE, set_y_ticks  # Assuming a config file for shared settings
+    INSET_LABEL_FONT_SIZE, set_y_ticks, set_x_ticks  # Assuming a config file for shared settings
 
 
-def generate(ax_main):
+def generate(ax_main, ax_theory=None, ax_theory_inset=None):
     # Define constants
     J_vals = [0.06, 0.07, 0.08, 0.09]
     lo_freqs = np.linspace(5.6, 6.4, 1000)  # LO frequencies
@@ -97,7 +97,7 @@ def generate(ax_main):
 
     # Configure main plot labels and legend
     ax_main.set_xlabel(r'$\omega_{YIG}$ (arb.)', fontsize=LABEL_FONT_SIZE)
-    ax_main.set_ylabel('Frequency (arb.)', fontsize=LABEL_FONT_SIZE)
+    ax_main.set_ylabel('Readout Frequency [GHz]', fontsize=LABEL_FONT_SIZE)
     ax_main.invert_yaxis()
     ax_main.legend(loc="lower left", fontsize=LEGEND_FONT_SIZE, fancybox=True, framealpha=1)
     ax_main.tick_params(axis='both', labelsize=TICK_FONT_SIZE)
@@ -110,6 +110,9 @@ def generate(ax_main):
     # Get the current y-tick positions
     set_y_ticks(ax_main, reverse=True)
 
+    # get rid of x ticks and x label
+    ax_main.set_xticks([])
+    ax_main.set_xlabel('')
 
     # Configure inset labels and legend
     # ax_inset.set_xlabel('YIG Frequency (GHz)', fontsize=INSET_TICK_FONT_SIZE)
@@ -118,7 +121,25 @@ def generate(ax_main):
     ax_inset.set_ylabel('Splitting (arb.)', fontsize=INSET_LABEL_FONT_SIZE)
     ax_inset.tick_params(axis='both', labelsize=INSET_TICK_FONT_SIZE)
 
+    if ax_theory:
+        # ax_main.set_xticks(ax_main.get_xticks())  # Keep the positions
+        # ax_main.set_xticklabels(ax_theory.get_xticks())  # Use the source's tick labels
+
+        ax_main.set_yticks(ax_main.get_yticks())  # Keep the positions
+        ax_main.set_yticklabels([f"{tick:.3f}" for tick in ax_theory.get_yticks()])
+
+        # set y-ticks again, but to 3 decimal places, manually,
+        # just do set to the same thing but have the .3f
+
+    if ax_theory_inset:
+        ax_inset.set_xticks(ax_inset.get_xticks())
+        ax_inset.set_xticklabels(ax_theory_inset.get_xticks())
+
+        ax_inset.set_yticks(ax_inset.get_yticks())
+        ax_inset.set_yticklabels(ax_theory_inset.get_yticks())
+
     return ax_main
+
 
 # Driver code for standalone testing
 if __name__ == "__main__":

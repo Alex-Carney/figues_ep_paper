@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from figure3.config import SAVE_DPI
 from frame_one_derivative import generate as generate_frame_one_derivative
 from frame_colorplot import generate as generate_frame_colorplot
-import generate_transmission_plots as gte
+from shared import generate_transmission_plots as gte
 
 
 def plot_colorplot_only(power_grid, voltages, frequencies):

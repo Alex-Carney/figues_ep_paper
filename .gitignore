@@ -3,3 +3,5 @@
 *.png
 *.db
 *.csv
+*.db-shm
+*.db-wal

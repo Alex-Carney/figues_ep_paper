@@ -12,6 +12,7 @@ SAVE_DPI = 400
 LEGEND_FONT_SIZE = 16
 
 NUM_Y_TICKS = 7
+NUM_X_TICKS = 5
 
 # Colors
 FREQ_LINE_COLOR = 'royalblue'
@@ -29,6 +30,7 @@ VOLTS_TO_MUT = 1428.6
 
 VEC_B = r'$\vec{B}$'
 
+
 # Other configurations as needed
 
 
@@ -38,3 +40,11 @@ def set_y_ticks(ax, reverse=False):
     ax.set_yticks(y_ticks)
     ax.set_yticklabels([f"{tick:.3f}" for tick in (y_ticks[::-1] if reverse else y_ticks)])
 
+
+def set_x_ticks(ax, num_dec, reverse=False):
+    x_min, x_max = ax.get_xlim()
+    x_ticks = np.linspace(x_min, x_max, NUM_X_TICKS)
+    ax.set_xticks(x_ticks)
+    # Dynamically create the format string based on num_dec
+    format_str = f"{{:.{num_dec}f}}"  # e.g., "{:.3f}" for 3 decimals
+    ax.set_xticklabels([format_str.format(tick) for tick in (x_ticks[::-1] if reverse else x_ticks)])

@@ -6,7 +6,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from sqlalchemy import create_engine
 from scipy.signal import find_peaks
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, LEGEND_FONT_SIZE, \
-    INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE, set_y_ticks  # Assuming config file for shared settings
+    INSET_TICK_FONT_SIZE, INSET_LABEL_FONT_SIZE, set_y_ticks, set_x_ticks  # Assuming config file for shared settings
 import matplotlib.ticker as mticker
 from matplotlib.colors import ListedColormap
 
@@ -141,11 +141,12 @@ def generate(ax):
     inset_ax.tick_params(axis='both', labelsize=INSET_TICK_FONT_SIZE)
 
     ax.set_ylim([5.994, 6.009])
-    ax.set_xlabel('Attenuation (dB)', fontsize=LABEL_FONT_SIZE)
+    ax.set_xlabel('Attenuation [dB]', fontsize=LABEL_FONT_SIZE)
 
     set_y_ticks(ax)
+    set_x_ticks(ax, 1)
 
-    return ax
+    return ax, inset_ax
 
 
 if __name__ == "__main__":

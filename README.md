@@ -20,6 +20,13 @@ Here are the required .db files:
 - overweekend_loop_phase_search.db
 - overweekend_loop_phase_search2.db
 
+These two are in:
+
+DARPA_experiments_lab\241030_AC_JS_MF_FIG1:
+    - thursday_overmorning.db
+    - wednesday_overnight.db 
+
+
 You also need to copy the following csv files:
 
 - combined_freq_splitting.csv
