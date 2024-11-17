@@ -20,11 +20,11 @@ def main():
 
     # Generate each frame and place it in the appropriate subplot
     ax1 = fig.add_subplot(gs[0, 0])
-    generate_frame_NR_Theory(ax1, ax3)
+    generate_frame_NR_Theory(ax1, ax3, ax3_inset)
     # generate_frame_NR_Theory(ax1)
 
     ax2 = fig.add_subplot(gs[0, 1])
-    generate_frame_PT_Theory(ax2, ax4)
+    generate_frame_PT_Theory(ax2, ax4, ax4_inset)
     # generate_frame_PT_Theory(ax2)
 
     plt.tight_layout(pad=3.0)
@@ -33,5 +33,7 @@ def main():
 
 
 if __name__ == "__main__":
+    # Set Helvetica as the default font
+    # plt.rcParams['font.family'] = 'Helvetica'
     main()
 

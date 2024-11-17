@@ -6,6 +6,8 @@ from figure1.config import FIG1_LABEL_FONT_SIZE, FIG1_TICK_FONT_SIZE, FIG1_TITLE
 from shared.constants import VOLTS_TO_MUT, VEC_B
 
 
+
+
 def generate_frame(ax, engine, experiment_id, title, add_x_label=False, add_y_label=False):
     try:
         # Query the data for the experiment
@@ -18,7 +20,8 @@ def generate_frame(ax, engine, experiment_id, title, add_x_label=False, add_y_la
             return
 
         # Plot the data on the provided axes
-        c = ax.pcolormesh(voltages * VOLTS_TO_MUT, frequencies / 1e9, power_grid.T, shading='auto', cmap='inferno', vmin=-40, vmax=8)
+        c = ax.pcolormesh(voltages * VOLTS_TO_MUT, frequencies / 1e9, power_grid.T, shading='auto', cmap='inferno',
+                          vmin=-40, vmax=8)
         ax.set_title(title, fontsize=FIG1_TITLE_FONT_SIZE)  # Set the custom title
 
         # Add X label only if specified
@@ -71,7 +74,7 @@ def main():
         # Determine the title
         phi_label = phi_labels[col]  # Phi depends on the column
         gamma_label = gamma_labels[row]  # Gamma depends on the row
-        title = f"$\phi$ = {phi_label}, $\Gamma$ = {gamma_label} + dB"
+        title = f"$\phi$ = {phi_label}, $\Gamma$ = {gamma_label} dB"
 
         # Use a different database for the last experiment
         if idx == len(experiment_ids) - 1:  # Last experiment
@@ -87,4 +90,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # Set Helvetica as the default font
+    # plt.rcParams['font.family'] = 'Helvetica'
     main()

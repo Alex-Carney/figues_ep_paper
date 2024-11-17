@@ -4,9 +4,11 @@ from matplotlib import cm
 from shared import generate_transmission_plots as gte
 import derivative_plots_with_sqrt_ontop as dgte
 from figure3.config import FREQ_LINE, FREQ_LINE_COLOR, EP_LINE_COLOR, VOLTAGE_LINE, INSET_LABEL_FONT_SIZE, VOLTS_TO_MUT, \
-    VEC_B, UPPER_BRANCH_FREQ_LINE, UPPER_BRANCH_LINE_COLOR
+ UPPER_BRANCH_FREQ_LINE, UPPER_BRANCH_LINE_COLOR
 
 from matplotlib.path import Path
+
+from shared.constants import VEC_B
 
 
 def custom_box_style(pad_left, pad_right, pad_bottom, pad_top):
@@ -118,7 +120,7 @@ def generate(ax_main, power_grid, voltages, frequencies):
 
     inset_ax.set_ylabel('$S_{21}$ (dBm)', fontsize=INSET_LABEL_FONT_SIZE,
                         bbox=dict(facecolor='white', edgecolor='white', pad=3))
-    inset_ax.set_xlabel('Voltage (V)', fontsize=INSET_LABEL_FONT_SIZE,
+    inset_ax.set_xlabel('$\Delta$' + VEC_B + '[$\mu$T]', fontsize=INSET_LABEL_FONT_SIZE,
                         bbox=dict(facecolor='white', edgecolor='white', pad=3))
 
     # Set the x ticks to tick * VOLTS_TO_MUT on the main plot

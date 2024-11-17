@@ -5,8 +5,9 @@ import numpy as np
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from matplotlib.colors import Normalize
 from config import LABEL_FONT_SIZE, TICK_FONT_SIZE, INSET_TICK_FONT_SIZE, \
-    INSET_LABEL_FONT_SIZE, LEGEND_FONT_SIZE, set_y_ticks, VOLTS_TO_MUT, VEC_B, \
+    INSET_LABEL_FONT_SIZE, LEGEND_FONT_SIZE, set_y_ticks, VOLTS_TO_MUT,  \
     set_x_ticks  # Assuming these are shared settings
+from shared.constants import VEC_B
 
 # Load data
 ced = pd.read_csv('../data/combined_freq_splitting.csv')

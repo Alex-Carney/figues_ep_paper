@@ -127,16 +127,11 @@ def generate(ax_main, ax_theory=None, ax_theory_inset=None):
 
         ax_main.set_yticks(ax_main.get_yticks())  # Keep the positions
         ax_main.set_yticklabels([f"{tick:.3f}" for tick in ax_theory.get_yticks()])
-
-        # set y-ticks again, but to 3 decimal places, manually,
-        # just do set to the same thing but have the .3f
-
     if ax_theory_inset:
-        ax_inset.set_xticks(ax_inset.get_xticks())
-        ax_inset.set_xticklabels(ax_theory_inset.get_xticks())
-
-        ax_inset.set_yticks(ax_inset.get_yticks())
-        ax_inset.set_yticklabels(ax_theory_inset.get_yticks())
+        # set all ticks to nothing
+        ax_inset.set_xticks([])
+        ax_inset.set_yticks([])
+        ax_inset.set_ylabel('')
 
     return ax_main
 
