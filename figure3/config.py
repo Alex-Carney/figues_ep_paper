@@ -3,7 +3,7 @@ VOLTAGE_LINE = 0.254  # Voltage for the vertical line (adjust as needed)
 FREQ_LINE_COLOR = 'royalblue'
 EP_LINE_COLOR = 'lime'
 
-UPPER_BRANCH_FREQ_LINE = 6.015e9
+UPPER_BRANCH_FREQ_LINE = 6.02e9
 UPPER_BRANCH_LINE_COLOR = 'forestgreen'
 
 LABEL_FONT_SIZE = 23

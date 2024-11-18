@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from figure3.config import FREQ_LINE, FREQ_LINE_COLOR, LABEL_FONT_SIZE, VOLTAGE_LINE, EP_LINE_COLOR, TICK_FONT_SIZE, \
-    VOLTS_TO_MUT, VEC_B, SAVE_DPI, LEGEND_FONT_SIZE_DERIVATIVES
+    VOLTS_TO_MUT, SAVE_DPI, LEGEND_FONT_SIZE_DERIVATIVES
+from shared.constants import VEC_B
 
 
 def generate(ax_main, power_grid, voltages, frequencies, save_plot=False):
